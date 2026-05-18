@@ -72,23 +72,6 @@ Do not commit `.env` files. Use:
 
 These examples show the required variables for local development and deployment.
 
-## Default Admin
-
-After migrations, the default admin is:
-
-- Email: `admin@medicare.com`
-- Password: `Admin@123456`
-
-Change these before production use.
-
-## Interview Demo Setup
-
-Recommended stack for a live demo:
-
-- GitHub: source code
-- Vercel: React frontend
-- Render or Railway: Node backend
-- Aiven or another managed MySQL provider: database
 
 This repository is focused on the web application demo only.
 
@@ -120,6 +103,5 @@ You can migrate your local MySQL database to a remote one using Navicat by expor
 - `node_modules`, logs, uploads, and archives are also ignored
 - Rotate any local keys that were previously used during development before production deployment
 
-## Notes
 
-This repository is prepared for interview/demo use and can be deployed by configuring environment variables on the hosting platform instead of storing secrets in Git.
+
