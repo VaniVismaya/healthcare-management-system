@@ -1,0 +1,9 @@
+{
+  "short_name": "MediCare Pro",
+  "name": "MediCare Pro Healthcare Management",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0F5F9",
+  "theme_color": "#0A7EA4"
+}
+

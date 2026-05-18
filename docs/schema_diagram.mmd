@@ -1,0 +1,61 @@
+flowchart TB
+  subgraph Users
+    PAT[Patient]
+    DOC[Doctor]
+    LAB[Lab]
+    PHARM[Pharmacy]
+    REC[Receptionist]
+    ADM[Admin]
+  end
+
+  subgraph Core Services
+    AUTH[Auth + OTP]
+    APPT[Appointments + Queue + QR]
+    LABMOD[Lab Orders + Reports]
+    RX[Prescriptions]
+    PAY[Payments + Booking Fee]
+    BLOG[Blog/CMS]
+    AI[AI Symptom Assist]
+    NOTIF[Notifications]
+  end
+
+  subgraph Data Layer (MySQL)
+    USERS_T[(users)]
+    CLINICS_T[(clinics)]
+    APPT_T[(appointments)]
+    LAB_T[(lab_* tables)]
+    RX_T[(prescriptions)]
+    PAY_T[(payment_orders)]
+    BLOG_T[(blog_posts)]
+  end
+
+  PAT --> AUTH --> USERS_T
+  DOC --> AUTH --> USERS_T
+  LAB --> AUTH --> USERS_T
+  PHARM --> AUTH --> USERS_T
+  REC --> AUTH --> USERS_T
+  ADM --> AUTH --> USERS_T
+
+  PAT --> APPT --> APPT_T
+  DOC --> APPT --> APPT_T
+  REC --> APPT --> APPT_T
+
+  DOC --> RX --> RX_T
+  PAT --> RX --> RX_T
+
+  DOC --> LABMOD --> LAB_T
+  LAB --> LABMOD --> LAB_T
+  PAT --> LABMOD --> LAB_T
+
+  PAT --> PAY --> PAY_T
+  ADM --> PAY --> PAY_T
+
+  DOC --> BLOG --> BLOG_T
+  ADM --> BLOG --> BLOG_T
+
+  PAT --> NOTIF
+  DOC --> NOTIF
+  LAB --> NOTIF
+  PHARM --> NOTIF
+  REC --> NOTIF
+  ADM --> NOTIF

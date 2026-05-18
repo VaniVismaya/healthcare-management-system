@@ -1,0 +1,42 @@
+const express = require('express');
+const router = express.Router();
+const adminController = require('../controllers/admin.controller');
+const masterDataController = require('../controllers/masterData.controller');
+const { authenticate, authorize, requirePermission, blockDemoAdminWrites } = require('../middleware/auth.middleware');
+
+router.use(authenticate, authorize('admin'));
+
+router.get('/dashboard', requirePermission('admin.dashboard.view'), adminController.getDashboard);
+router.get('/users', requirePermission('admin.users.view'), adminController.getUsers);
+router.get('/users/:id', requirePermission('admin.users.view'), adminController.getUserDetails);
+router.get('/audit-logs', requirePermission('admin.audit.view'), adminController.getAuditLogs);
+router.get('/reports', requirePermission('admin.reports.view'), adminController.getReports);
+router.get('/pending-verifications', requirePermission('admin.pending.view'), adminController.getPendingVerifications);
+router.get('/clinics', requirePermission('admin.clinics.view'), adminController.getClinics);
+router.get('/clinics/:id', requirePermission('admin.clinics.view'), adminController.getClinicDetails);
+router.patch('/users/:id/verify', requirePermission('admin.users.verify'), blockDemoAdminWrites, adminController.verifyUser);
+router.patch('/users/:id/toggle-status', requirePermission('admin.users.toggle'), blockDemoAdminWrites, adminController.toggleUserStatus);
+router.patch('/clinics/:id/verify', requirePermission('admin.clinics.verify'), blockDemoAdminWrites, adminController.verifyClinic);
+router.get('/contact-messages', requirePermission('admin.messages.view'), adminController.getContactMessages);
+router.patch('/contact-messages/:id/reply', requirePermission('admin.messages.reply'), blockDemoAdminWrites, adminController.replyContact);
+router.get('/plans', requirePermission('admin.plans.manage'), adminController.getPlans);
+router.post('/plans', requirePermission('admin.plans.manage'), blockDemoAdminWrites, adminController.upsertPlan);
+router.put('/plans/:id', requirePermission('admin.plans.manage'), blockDemoAdminWrites, adminController.upsertPlan);
+router.post('/plans/:id/assign', requirePermission('admin.plans.manage'), blockDemoAdminWrites, adminController.assignPlan);
+router.get('/plan-requests', requirePermission('admin.plans.manage'), adminController.getPlanRequests);
+router.patch('/plan-requests/:id', requirePermission('admin.plans.manage'), blockDemoAdminWrites, adminController.updatePlanRequest);
+router.get('/announcements', requirePermission('admin.announcements.manage'), adminController.getAnnouncements);
+router.post('/announcements', requirePermission('admin.announcements.manage'), blockDemoAdminWrites, adminController.createAnnouncement);
+router.get('/booking-fee', requirePermission('admin.plans.manage'), adminController.getBookingFee);
+router.post('/booking-fee', requirePermission('admin.plans.manage'), blockDemoAdminWrites, adminController.setBookingFee);
+router.get('/departments', requirePermission('admin.departments.manage'), masterDataController.adminListDepartments);
+router.post('/departments', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminCreateDepartment);
+router.put('/departments/:id', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminUpdateDepartment);
+router.get('/specializations', requirePermission('admin.departments.manage'), masterDataController.adminListSpecializations);
+router.post('/specializations', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminCreateSpecialization);
+router.put('/specializations/:id', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminUpdateSpecialization);
+router.get('/educations', requirePermission('admin.departments.manage'), masterDataController.adminListEducations);
+router.post('/educations', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminCreateEducation);
+router.put('/educations/:id', requirePermission('admin.departments.manage'), blockDemoAdminWrites, masterDataController.adminUpdateEducation);
+
+module.exports = router;

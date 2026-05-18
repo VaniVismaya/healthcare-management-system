@@ -1,0 +1,32 @@
+export const doctorSpecializations = [
+  'General Physician',
+  'Cardiologist',
+  'Dermatologist',
+  'Endocrinologist',
+  'ENT Specialist',
+  'Gastroenterologist',
+  'Gynecologist',
+  'Neurologist',
+  'Oncologist',
+  'Ophthalmologist',
+  'Orthopedic Specialist',
+  'Pediatrician',
+  'Psychiatrist',
+  'Pulmonologist',
+  'Urologist',
+];
+
+export const doctorEducations = [
+  'MBBS',
+  'MD',
+  'MS',
+  'DM',
+  'DNB',
+  'MCh',
+  'BDS',
+  'MDS',
+  'BAMS',
+  'BHMS',
+  'BUMS',
+  'PharmD',
+];

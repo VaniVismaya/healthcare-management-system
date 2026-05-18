@@ -1,0 +1,17 @@
+name: medicare_pro_android
+version: 0.1.0
+publish_to: none
+description: MediCare Pro Android App (Flutter)
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  provider: ^6.1.2
+  shared_preferences: ^2.3.2
+
+flutter:
+  uses-material-design: true
