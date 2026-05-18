@@ -41,3 +41,9 @@ uploads/
 
 # Archives
 *.zip
+
+# Local-only mobile code kept out of the interview repo
+mobile/
+mobile-android/
+mobile-ios/
+mobile-php/

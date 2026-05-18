@@ -1,6 +1,6 @@
 # MediCare Pro - Healthcare Management System
 
-Full-stack healthcare management system with patient, doctor, laboratory, pharmacy, receptionist, and admin workflows.
+Full-stack web healthcare management system with patient, doctor, laboratory, pharmacy, receptionist, and admin workflows.
 
 ## Overview
 
@@ -8,7 +8,6 @@ This project includes:
 
 - `client/`: React web application
 - `server/`: Node.js + Express API
-- `mobile/`: Flutter mobile application
 - `docs/`: supporting project documentation
 
 ## Stack
@@ -16,7 +15,6 @@ This project includes:
 - Frontend: React.js
 - Backend: Node.js, Express.js
 - Database: MySQL
-- Mobile: Flutter
 - Realtime: Socket.IO
 
 ## Core Features
@@ -91,6 +89,8 @@ Recommended stack for a live demo:
 - Vercel: React frontend
 - Render or Railway: Node backend
 - Aiven or another managed MySQL provider: database
+
+This repository is focused on the web application demo only.
 
 ## Deployment Notes
 
