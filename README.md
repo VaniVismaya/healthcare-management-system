@@ -1,91 +1,125 @@
 # MediCare Pro - Healthcare Management System
 
-Full-stack healthcare management system with patient, doctor, lab, pharmacy, and appointment workflows.
+Full-stack healthcare management system with patient, doctor, laboratory, pharmacy, receptionist, and admin workflows.
+
+## Overview
+
+This project includes:
+
+- `client/`: React web application
+- `server/`: Node.js + Express API
+- `mobile/`: Flutter mobile application
+- `docs/`: supporting project documentation
 
 ## Stack
 
-- Backend: Node.js, Express.js, MySQL
 - Frontend: React.js
+- Backend: Node.js, Express.js
+- Database: MySQL
 - Mobile: Flutter
 - Realtime: Socket.IO
 
-## Project Structure
-
-```text
-healthcare-system/
-|-- server/
-|-- client/
-|-- mobile/
-|-- docs/
-`-- server-php/
-```
-
 ## Core Features
 
-- Role-based authentication for patients, doctors, labs, pharmacists, receptionists, and admin
+- Role-based authentication and authorization
 - Appointment booking and queue management
-- Prescriptions and lab order flows
-- Lab reports and pharmacy inventory support
-- Admin dashboards, approvals, and audit features
+- Doctor prescriptions and lab orders
+- Lab report uploads and patient access
+- Pharmacy inventory and prescription workflows
+- Admin dashboards, approvals, and audit logs
 - Realtime notifications
 
 ## Local Setup
 
-### Backend
+### 1. Clone and install
 
 ```bash
 cd server
 npm install
+
+cd ../client
+npm install
+```
+
+### 2. Create local env files
+
+Copy the example files and fill in your own values:
+
+```bash
+copy server\.env.example server\.env
+copy client\.env.example client\.env
+```
+
+### 3. Run the backend
+
+```bash
+cd server
 npm run migrate
 npm run dev
 ```
 
-### Frontend
+### 4. Run the frontend
 
 ```bash
 cd client
-npm install
 npm start
 ```
 
 ## Environment Variables
 
-Keep secrets in local or hosting environment variables only. Do not commit `.env` files.
+Do not commit `.env` files. Use:
 
-Backend examples:
+- [server/.env.example](server/.env.example)
+- [client/.env.example](client/.env.example)
 
-```env
-PORT=5000
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=med_appoint
-JWT_SECRET=your_jwt_secret
-CLIENT_URL=http://localhost:3001
-```
-
-Frontend examples:
-
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-REACT_APP_SOCKET_URL=http://localhost:5000
-```
+These examples show the required variables for local development and deployment.
 
 ## Default Admin
+
+After migrations, the default admin is:
 
 - Email: `admin@medicare.com`
 - Password: `Admin@123456`
 
-Update these before production use.
+Change these before production use.
 
-## Deployment
+## Interview Demo Setup
 
-- Frontend: Vercel / Netlify
-- Backend: Render / Railway
-- Database: MySQL compatible cloud host
+Recommended stack for a live demo:
+
+- GitHub: source code
+- Vercel: React frontend
+- Render or Railway: Node backend
+- Aiven or another managed MySQL provider: database
+
+## Deployment Notes
+
+### Backend
+
+Set these on your backend host:
+
+- `NODE_ENV=production`
+- `CLIENT_URL=https://your-frontend-domain`
+- database credentials from your cloud MySQL instance
+- JWT, email, payment, Zoom, Firebase, and other private keys
+
+### Frontend
+
+Set these on your frontend host:
+
+- `REACT_APP_API_URL=https://your-backend-domain/api`
+- `REACT_APP_SOCKET_URL=https://your-backend-domain`
+
+### Database
+
+You can migrate your local MySQL database to a remote one using Navicat by exporting from local and importing into the cloud database.
+
+## Security Notes
+
+- `.env` files are ignored by Git
+- `node_modules`, logs, uploads, and archives are also ignored
+- Rotate any local keys that were previously used during development before production deployment
 
 ## Notes
 
-- `.env` files, `node_modules`, logs, uploads, and zip files are excluded from Git.
-- This repository is intended for interview/demo purposes and can be deployed with environment variables configured on the hosting platform.
+This repository is prepared for interview/demo use and can be deployed by configuring environment variables on the hosting platform instead of storing secrets in Git.
